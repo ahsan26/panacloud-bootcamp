@@ -17,7 +17,7 @@ class Search extends React.Component {
     }
     async componentDidMount() {
         if (!this.props.booksShelf.read.length || !this.props.booksShelf.currentlyReading.length || !this.props.booksShelf.wantToRead.length) {
-            this.getBooksInTheShelf().then(booksInShelf=>{
+            this.getBooksInTheShelf().then(booksInShelf => {
                 this.setState({
                     booksInShelf
                 })
@@ -92,7 +92,7 @@ class Search extends React.Component {
                                 return <li key={book.id}>
                                     <div className="book">
                                         <div className="book-top">
-                                            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                                            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail : 'https://previews.123rf.com/images/benchart/benchart1204/benchart120400018/13237662-illustration-of-a-cartoon-opened-brown-book.jpg'})` }}></div>
                                             <div className="book-shelf-changer">
                                                 {
                                                     book.shelf === 'move' ?
