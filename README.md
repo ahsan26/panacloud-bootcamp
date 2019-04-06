@@ -1,1 +1,0 @@
-# panacloud-bootcamp
