@@ -1,21 +1,21 @@
 import React from "react";
-import {View,StatusBar,StyleSheet} from "react-native"
-import {Constants} from "expo"
-import {bgColor} from "../Utils/helper";
+import { View, StatusBar, StyleSheet } from "react-native"
+import { Constants } from "expo"
+import { appTheme } from "../Utils/helper";
 
-const Statusbar = (props)=>{
+const Statusbar = (props) => {
     return (
         <View style={styles.main}>
-<StatusBar {...props} />
+            <StatusBar {...props} />
         </View>
     );
 };
-
-const styles=StyleSheet.create({
-main:{
-    height:Constants.statusBarHeight,
-    backgroundColor:bgColor
-}
+const { themeBgColor } = appTheme;
+const styles = StyleSheet.create({
+    main: {
+        height: Constants.statusBarHeight,
+        backgroundColor: themeBgColor
+    }
 });
 
 export default Statusbar;

@@ -1,7 +1,7 @@
-import React ,{Component,Fragment}from 'react';
-import { View, Text } from "react-native";
+import React, { Component, Fragment } from 'react';
 import * as AsyncAPI from "../Utils/asyncApi";
 import Statusbar from "./statusBar";
+import StackNavigator from "./stackNavigator";
 
 class Dashboard extends Component {
     constructor() {
@@ -53,7 +53,16 @@ class Dashboard extends Component {
     render() {
         return (
             <Fragment>
-<Statusbar barStyle='light-content' />
+                <Statusbar barStyle='light-content' />
+                <StackNavigator
+                    screenProps={{
+                        decks: this.state.decks,
+                        handleNewDeckSubmission: this.handleNewDeckSubmission,
+                        handleNewQuestionSubmission: this.handleNewQuestionSubmission,
+                        handleRemovingDeck: this.handleRemovingDeck
+                    }}
+                    ref={nav => { this.navigation = nav }}
+                />
             </Fragment>
         );
     }
