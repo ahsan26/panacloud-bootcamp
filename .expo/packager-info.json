@@ -2,9 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 22732,
-  "expoServerNgrokUrl": "https://zq-48b.anonymous.panacloud-bootcamp.exp.direct",
-  "packagerNgrokUrl": "https://packager.zq-48b.anonymous.panacloud-bootcamp.exp.direct",
-  "ngrokPid": 22777,
+  "packagerPid": 15889,
+  "expoServerNgrokUrl": "https://zq-48b.ahsan.panacloud-bootcamp.exp.direct",
+  "packagerNgrokUrl": "https://packager.zq-48b.ahsan.panacloud-bootcamp.exp.direct",
+  "ngrokPid": 15935,
   "webpackServerPort": null
 }

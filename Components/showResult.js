@@ -3,23 +3,28 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { appTheme } from "../Utils/helper"
 import { markDateAsQuizAttempted } from "../Utils/asyncApi"
 
-const ShowResult = ({ navigation, restartQuiz, correctCount, totalQuestions }) => {
-    markDateAsQuizAttempted();
-    return (
-        <View style={styles.root}>
-            <Text style={styles.header}>Quiz Result {((correctCount / totalQuestions) * 100).toFixed(2)}</Text>
-            <Text style={styles.info}>Total {correctCount} question(s) answered correctly out of total {totalQuestions} question(s)</Text>
-            <View style={styles.actionTakingContainer}>
-                <TouchableOpacity style={styles.button} onPress={restartQuiz}>
-                    <Text style={styles.buttonText}>Restart Quiz</Text>
-                </TouchableOpacity>
+class ShowResult extends React.Component {
+    componentDidMount() {
+        markDateAsQuizAttempted();
+    }
+    render() {
+        const { correctCount, totalQuestions, restartQuiz, navigation } = this.props;
+        return (
+            <View style={styles.root}>
+                <Text style={styles.header}>Quiz Result {((correctCount / totalQuestions) * 100).toFixed(2)}</Text>
+                <Text style={styles.info}>Total {correctCount} question(s) answered correctly out of total {totalQuestions} question(s)</Text>
+                <View style={styles.actionTakingContainer}>
+                    <TouchableOpacity style={styles.button} onPress={restartQuiz}>
+                        <Text style={styles.buttonText}>Restart Quiz</Text>
+                    </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button} onPress={_ => navigation.goBack()}>
-                    <Text style={styles.buttonText}>GoTo Deck</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={_ => navigation.goBack()}>
+                        <Text style={styles.buttonText}>GoTo Deck</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-        </View>
-    );
+        );
+    }
 }
 
 const styles = StyleSheet.create({

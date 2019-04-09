@@ -7,8 +7,10 @@ export function loadInitialData() {
 }
 
 export const createNewDeck = title => {
+    console.log('newDeckk', title)
     return getDeck(title).then(deck => {
         let newDeck = deck ? JSON.parse(deck) : { title, questions: [] };
+        console.log('createbew deck api', newDeck)
         return AsyncStorage.setItem(title, JSON.stringify(newDeck))
             .then(_ => {
                 return newDeck;
@@ -36,14 +38,14 @@ export const checkQuizAttemptedToday = () => {
 
 export const markDateAsQuizAttempted = () => {
     let currentDate = new Date();
-    currentDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYearI()}`;
-    return AsyncStorage.setItem('dateLatestAttempted', JSON.stringify(currentDate));
+    currentDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
+    AsyncStorage.setItem('dateLatestAttempted', JSON.stringify(currentDate));
 }
 
 export const getdecks = () => {
     let completeDecks = {};
     return AsyncStorage.getAllKeys().then(keys => {
-        return AsyncStorage.multiGet(keys)
+        return AsyncStorage.multiGet(keys.filter(key=>key!=='dateLatestAttempted'))
             .then(allDecks => {
                 allDecks.map((deck, i, decks) => {
                     let key = decks[i][0];
@@ -71,7 +73,6 @@ export const addCardToDeck = (title, card) => {
 export const initiateLocalNotification = () => {
     Permissions.askAsync(Permissions.NOTIFICATIONS)
         .then(status => {
-            console.log('Constants.isDevice',Constants.isDevice,status);
             if (Constants.isDevice && status === 'granted') {
                 Notifications.cancelAllScheduledNotificationsAsync()
                     .then(_ => {
@@ -130,3 +131,6 @@ export const initiateLocalNotification = () => {
             }
         })
 }
+
+
+

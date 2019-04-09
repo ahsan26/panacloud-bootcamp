@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "flash_cards",
-    "slug": "flash_cards",
+    "name": "Flash Cards",
+    "slug": "FlashCards",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
@@ -24,6 +24,9 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android":{
+      "package": "com.bootcamp.flashCards"
     }
   }
 }

@@ -50,9 +50,9 @@ class Quiz extends React.Component {
             : { question: null, answer: null };
 
         return (!totalQuestions) ? (
-            <Fragment style={styles.noQcontainer}>
+            <View style={styles.noQcontainer}>
                 <Text style={styles.indicatorText}>No Questions To Start Quiz!</Text>
-            </Fragment>
+            </View>
         ) : (currentQuestion >= totalQuestions)
                 ? <ShowResult totalQuestions={totalQuestions} correctCount={this.state.correctCount} navigation={this.props.navigation} restartQuiz={this.restartQuiz} />
                 : (
