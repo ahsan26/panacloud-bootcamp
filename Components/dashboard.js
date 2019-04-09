@@ -16,20 +16,18 @@ class Dashboard extends Component {
     }
     handleNewDeckSubmission(title) {
         return AsyncAPI.createNewDeck(title).then(newDeck => {
-            this.setState(prevState => ({
-                ...prevState.decks,
-                [title]: newDeck
-            }));
+            let decks = this.state.decks;
+            decks[title] = newDeck;
+            this.setState({ decks });
             return newDeck;
         });
     }
 
     handleNewQuestionSubmission(title, card) {
         return AsyncAPI.addCardToDeck(title, card).then(newDeck => {
-            this.setState(prevState => ({
-                ...prevState.decks,
-                [title]: newDeck
-            }));
+            let decks = this.state.decks;
+            decks[title] = newDeck;
+            this.setState({ decks });
             return newDeck;
         });
     }
@@ -48,6 +46,7 @@ class Dashboard extends Component {
 
     componentDidMount() {
         this.initialData();
+        AsyncAPI.initiateLocalNotification();
     }
 
     render() {

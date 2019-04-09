@@ -1,18 +1,21 @@
 import React from "react";
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from "react-native"
 import { withNavigation } from "react-navigation";
-import { isNoDeck } from "../Utils/helper";
+import { isNoDeck, randomColorGroup } from "../Utils/helper";
+import { LinearGradient } from "expo";
 
-const EachDeck = ({ navigation ,deck}) => {
+const EachDeck = ({ navigation, deck }) => {
     return (
-        <TouchableOpacity style={styles.deckContainer} onPress={_=>navigation.navigate('Deck',{deck})}>
-            <Text style={styles.heading}>{deck.title}</Text>
-            <Text style={styles.questionsLengthShower}>{deck.questionsLength} Cards</Text>
-        </TouchableOpacity>
+        <LinearGradient start={[.1,.2]} end={[.9,.5]} colors={randomColorGroup()} style={styles.deckContainer}>
+            <TouchableOpacity onPress={_ => navigation.navigate('Deck', { deck })}>
+                <Text style={styles.heading}>{deck.title}</Text>
+                <Text style={styles.questionsLengthShower}>{deck.questions.length} Cards</Text>
+            </TouchableOpacity>
+        </LinearGradient>
     );
 }
 
-const Decks = ({ screenProps ,navigation}) => {
+const Decks = ({ screenProps, navigation }) => {
     const { decks } = screenProps;
     return (
         <View style={styles.mainContaienr}>
@@ -36,10 +39,17 @@ const styles = StyleSheet.create({
         height: 200,
         borderRadius: 5,
         borderColor: 'black',
-        backgroundColor: 'gray',
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 8
+    },
+    heading: {
+        color: '#fff',
+        fontSize: 20,
+        fontWeight: 'bold'
+    },
+    questionsLengthShower: {
+        color: '#fff'
     }
 })
 
